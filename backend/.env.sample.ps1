@@ -1,0 +1,6 @@
+$env:MONGO_HOST=""
+$env:MONGO_PORT=""
+$env:MONGO_DB=""
+$env:APP_PORT=""
+$env:REDIS_HOST=""
+$env:REDIS_PORT=""
