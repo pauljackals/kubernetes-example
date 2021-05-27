@@ -4,16 +4,16 @@ const app = express()
 const routeMongo = require("./routes/mongo")
 const routeRedis = require("./routes/redis")
 
+const redis = require("./config/configRedis")
+require("./config/configMongo")
+
 app.use(cors())
 app.use(express.json())
 
 app.use("/mongo", routeMongo)
-app.use("/redis", routeRedis)
+app.use("/redis", routeRedis(redis))
 
 const appPort = process.env.APP_PORT
-
-const redis = require("./config/configRedis")
-const mongoose = require("./config/configMongo")
 
 app.listen(appPort, () => {
     console.log(`API server listening at http://localhost:${appPort}`)
