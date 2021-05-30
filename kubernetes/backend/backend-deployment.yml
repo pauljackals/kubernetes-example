@@ -1,0 +1,58 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+
+spec:
+  template:
+    metadata:
+      name: backend-pod
+      labels:
+        app: backend
+    spec: 
+      containers:
+        - name: backend-container
+          image: pauljackals/kubernetes-example-backend
+          env:
+            - name: MONGO_HOST
+              valueFrom: 
+                configMapKeyRef:
+                  name: backend-config
+                  key: MONGO_HOST
+            - name: MONGO_PORT
+              valueFrom: 
+                configMapKeyRef:
+                  name: backend-config
+                  key: MONGO_PORT
+            - name: MONGO_DB
+              valueFrom: 
+                configMapKeyRef:
+                  name: backend-config
+                  key: MONGO_DB
+            - name: APP_PORT
+              valueFrom: 
+                configMapKeyRef:
+                  name: backend-config
+                  key: APP_PORT
+            - name: REDIS_HOST
+              valueFrom: 
+                configMapKeyRef:
+                  name: backend-config
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom: 
+                configMapKeyRef:
+                  name: backend-config
+                  key: REDIS_PORT
+            - name: NODE_ENV
+              valueFrom: 
+                configMapKeyRef:
+                  name: backend-config
+                  key: NODE_ENV
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: backend

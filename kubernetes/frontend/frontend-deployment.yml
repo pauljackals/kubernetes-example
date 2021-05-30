@@ -1,0 +1,28 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+
+spec:
+  template:
+    metadata:
+      name: frontend-pod
+      labels:
+        app: frontend
+    spec: 
+      containers:
+        - name: frontend-container
+          image: pauljackals/kubernetes-example-frontend
+          env:
+            - name: REACT_APP_BACKEND_HOST
+              valueFrom: 
+                configMapKeyRef:
+                  name: frontend-config
+                  key: REACT_APP_BACKEND_HOST
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: frontend
