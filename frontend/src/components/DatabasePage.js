@@ -2,8 +2,6 @@ import axios from 'axios'
 import {useState, useEffect, useCallback} from "react"
 
 const DatabasePage = ({database}) => {
-    axios.defaults.baseURL = process.env.REACT_APP_BACKEND_HOST
-
     const [people, setPeople] = useState([])
     const [error, setError] = useState(false)
 
