@@ -11,7 +11,7 @@ Przykładowa konfiguracja kubernetesa zapewniająca działanie (dodawanie imion 
 
 ---
 
-Komunikację z całym systemem zapewnia usługa `Ingress`, która potrzebuje do poprawnego działania kontrolera, w tym przypadku `ingress-nginx`.
+Komunikację z całym systemem zapewnia usługa `Ingress`, która potrzebuje do poprawnego działania kontrolera, w tym przypadku [`ingress-nginx`](https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop).
 
 Nasłuchuje on na porcie _80_ i przekierowuje zapytania wewnątrz klastra do `nginx` odpowiedzialnego za frontend (port _80_) lub do backendu (port _5000_).
 
