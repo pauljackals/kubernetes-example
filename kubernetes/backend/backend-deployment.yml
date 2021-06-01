@@ -30,8 +30,8 @@ spec:
             - name: MONGO_DB
               valueFrom: 
                 configMapKeyRef:
-                  name: backend-config
-                  key: MONGO_DB
+                  name: mongo-config
+                  key: MONGO_INITDB_DATABASE
             - name: APP_PORT
               valueFrom: 
                 configMapKeyRef:
