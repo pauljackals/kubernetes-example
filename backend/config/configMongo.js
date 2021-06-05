@@ -10,7 +10,8 @@ mongoose.connect(`mongodb://${mongoData.host}:${mongoData.port}/${mongoData.data
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        serverSelectionTimeoutMS: 300000
 
     }).then(() => {
         console.log("Connected to MongoDB")
