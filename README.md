@@ -23,6 +23,6 @@ Aplikacje konfigurowane są na podstawie przekazywanych im w deploymencie zmienn
 
 ---
 
-Zarówno frontend jak i backend mają ustawione po _2_ repliki, żeby w razie ewentualnych problemów / oczekiwania na ponowne uruchomienie poda nie nastąpiła przerwa w działaniu aplikacji. Ponadto poszczególne pody zostają trochę odciążone, dzięki podziałowi ruchu komunikacji.
+Zarówno frontend jak i backend mają ustawione po _2_ repliki, żeby w razie ewentualnych problemów / oczekiwania na ponowne uruchomienie poda nie nastąpiła przerwa w działaniu aplikacji. Ponadto poszczególne pody zostają odciążone, dzięki podziałowi ruchu komunikacji.
 
 Baza danych `MongoDB` ma dodatkowo zapewnioną trwałość danych dzięki korzystaniu z `PersistentVolumeClaim`, który z kolei wykorzystuje zasoby zarezerwowane przez `PersistentVolume`.
