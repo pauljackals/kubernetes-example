@@ -1,28 +1,27 @@
-# Kubernetes - projekt
-### Pawel Sakaluk
+# Kubernetes - project
 
 ---
 
-Przykładowa konfiguracja kubernetesa zapewniająca działanie (dodawanie imion do baz danych) i komunikację następujących elementów:
-* `React` _(zbudowana i postawiona na `nginx`)_
+An example kubernetes configuration providing functioning (adding names to the database) and communication of the following elements:
+* `React` _(built and ran `nginx`)_
 * `Express`
 * `MongoDB`
 * `Redis`
 
 ---
 
-Komunikację z całym systemem zapewnia usługa `Ingress`, która potrzebuje do poprawnego działania kontrolera, w tym przypadku [`ingress-nginx`](https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop).
+The `Ingress` service, which needs a controller to work properly (in this case [`ingress-nginx`](https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop)), provides communication with the whole system.
 
-Nasłuchuje on na porcie _80_ i przekierowuje zapytania wewnątrz klastra do `nginx` odpowiedzialnego za frontend (port _80_) lub do backendu (port _5000_).
+It listens on port _80_ and forwards requests inside the cluster into the `nginx` responsible for the frontend (port _80_) or the backend (port _5000_).
 
-Poszczególne aplikacje są dostępne wewnątrz klastra dzięki usłudze `ClusterIP`.
-
----
-
-Aplikacje konfigurowane są na podstawie przekazywanych im w deploymencie zmiennych środowiskowych, pochodzących z map konfiguracyjnych.
+Each application is available inside the cluster thanks to the `ClusterIP` service.
 
 ---
 
-Zarówno frontend jak i backend mają ustawione po _2_ repliki, żeby w razie ewentualnych problemów / oczekiwania na ponowne uruchomienie poda nie nastąpiła przerwa w działaniu aplikacji. Ponadto poszczególne pody zostają odciążone, dzięki podziałowi ruchu komunikacji.
+The applications are configured by environmental variables, originating from config maps and passed during deployment.
 
-Baza danych `MongoDB` ma dodatkowo zapewnioną trwałość danych dzięki korzystaniu z `PersistentVolumeClaim`, który z kolei wykorzystuje zasoby zarezerwowane przez `PersistentVolume`.
+---
+
+Both frontend and backend are set to _2_ replicas, in order to maintain functioning of the application in case of any errors / waiting for pod's restart. Moreover, each pod is relieved, thanks to traffic balancing.
+
+The `MongoDB` database additionally persists data thanks to `PersistentVolumeClaim`, which uses resources reserved by `PersistentVolume`.
