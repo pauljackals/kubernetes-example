@@ -3,7 +3,7 @@
 ---
 
 An example kubernetes configuration providing functioning (adding names to the database) and communication of the following elements:
-* `React` _(built and ran `nginx`)_
+* `React` _(built and ran on `nginx`)_
 * `Express`
 * `MongoDB`
 * `Redis`
